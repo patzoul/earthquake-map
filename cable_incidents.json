@@ -70,5 +70,14 @@
     "cables": ["SeaMeWe-4", "IMEWE", "FALCON GCX"],
     "desc": "Cables were severed near Jeddah, Saudi Arabia, knocking out segments of SeaMeWe-4 (operated by Tata Communications) and IMEWE, while Kuwaiti officials confirmed damage to the FALCON GCX cable as well. The disruption raised latency for cloud services — including Microsoft Azure — across India, Pakistan and the UAE for about a day before traffic was rerouted. Early assessments pointed to ordinary commercial shipping activity, likely an anchor dragged across the seabed, rather than deliberate sabotage. Physical repairs were expected to take weeks to months.",
     "source": "NBC News, Network World, Gulf Business"
+  },
+  {
+    "lat": 59.65,
+    "lon": 24.80,
+    "date": "Dec 31, 2025",
+    "title": "Gulf of Finland — Elisa & Arelion cables cut (vessel Fitburg)",
+    "cables": ["Elisa (Finland–Estonia)", "Arelion (Estonia EEZ)"],
+    "desc": "A telecom data cable operated by Finland's Elisa, running across the Gulf of Finland between Finland and Estonia, was damaged at 4:53 EET, along with Arelion-operated cables in Estonia's exclusive economic zone. Finnish police and coast guard boarded and seized the Saint Vincent and the Grenadines–flagged cargo ship Fitburg — sailing from St Petersburg, Russia toward Haifa, Israel — which was found with its anchor lowered, and detained its 14 crew (Russian, Georgian, Kazakh and Azerbaijani nationals) on suspicion of aggravated criminal damage. The event was treated as suspected sabotage amid a run of Baltic anchor-drag incidents; by March 2026 Finnish investigators concluded the cable had been cut by the Fitburg's anchor dragging through Estonia's exclusive economic zone.",
+    "source": "CNN, Euronews, The Moscow Times, Insurance Journal, Wikipedia (2025 Elisa data cable incident)"
   }
 ]
