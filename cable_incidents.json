@@ -27,6 +27,15 @@
     "source": "Finnish Government, NPR, Newsweek, Submarine Networks"
   },
   {
+    "lat": 57.60,
+    "lon": 20.00,
+    "date": "Jan 26, 2025",
+    "title": "Baltic Sea — LVRTC Latvia–Sweden cable damaged (vessel Vezhen)",
+    "cables": ["LVRTC (Latvia–Sweden, Ventspils–Gotland)"],
+    "desc": "A fiber-optic cable operated by Latvia's LVRTC, running from Ventspils to Sweden's island of Gotland, was damaged in Swedish economic waters about 130 km off the Latvian coast. Sweden seized the Malta-flagged bulk carrier Vezhen — with Bulgarian officers and a Myanmar crew — on suspicion of sabotage amid heightened Baltic tensions. After investigating, however, Swedish prosecutors ruled the damage accidental: two of the anchor's three safety devices had been inoperative for some time, and the last gave way in heavy seas, dropping the anchor and chain, which dragged across the cable. The seizure was lifted and the case was formally closed in October 2025.",
+    "source": "Washington Post, Euronews, Data Center Dynamics, The Moscow Times, LSM"
+  },
+  {
     "lat": -5.237,
     "lon": 11.250,
     "date": "Mar 13–14, 2024",
