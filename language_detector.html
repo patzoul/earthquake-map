@@ -145,7 +145,8 @@
     <div class="hint">
       5–15 seconds of clear, continuous speech is plenty. Longer clips are sampled at up to
       three 30-second windows and the results averaged. Recording needs microphone permission
-      (and an <code>https://</code> or <code>localhost</code> page).
+      (and an <code>https://</code> or <code>localhost</code> page). On phones expect a slower
+      first run — the model download and CPU inference both take noticeably longer than on a laptop.
     </div>
   </div>
 
@@ -319,9 +320,21 @@ function clearStatus() { $('status').className = ''; }
 /* --------------------------- audio plumbing ----------------------- */
 function ctx() { return audioCtx ||= new (window.AudioContext || window.webkitAudioContext)(); }
 
+/* iOS/Safari start an AudioContext suspended unless it is created *and* resumed
+ * inside a user gesture, and a suspended context plays nothing. Call this from
+ * every click handler that leads to decoding or playback. */
+function wakeAudio() {
+  const c = ctx();
+  if (c.state === 'suspended') c.resume().catch(() => {});
+  return c;
+}
+
 /** Decode any browser-supported audio/video container to 16 kHz mono. */
 async function toPcm(arrayBuffer) {
-  const decoded = await ctx().decodeAudioData(arrayBuffer);
+  const decoded = await new Promise((resolve, reject) => {
+    const maybe = ctx().decodeAudioData(arrayBuffer, resolve, reject);
+    if (maybe && typeof maybe.then === 'function') maybe.then(resolve, reject);
+  });
   // Downmix to mono.
   const n = decoded.length, chans = decoded.numberOfChannels;
   const mono = new Float32Array(n);
@@ -405,6 +418,7 @@ function showClip(name) {
 
 /* ------------------------------ recording ------------------------- */
 recBtn.onclick = async () => {
+  wakeAudio();
   if (recorder && recorder.state === 'recording') { recorder.stop(); return; }
   try {
     recStream = await navigator.mediaDevices.getUserMedia({
@@ -440,7 +454,7 @@ recBtn.onclick = async () => {
   recTicker = setInterval(tick, 100);
 };
 
-fileBtn.onclick = () => fileInput.click();
+fileBtn.onclick = () => { wakeAudio(); fileInput.click(); };
 fileInput.onchange = async () => {
   const f = fileInput.files[0];
   if (!f) return;
@@ -463,6 +477,7 @@ document.body.addEventListener('drop', async e => {
 
 playBtn.onclick = () => {
   if (playing) { playing.stop(); return; }
+  wakeAudio();
   const buf = ctx().createBuffer(1, pcm.length, SR);
   buf.copyToChannel(pcm, 0);
   const src = ctx().createBufferSource();
